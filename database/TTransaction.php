@@ -21,4 +21,11 @@ abstract class TTransaction
         }
         return self::$conn;
     }
+
+    public static function closeConnection()
+    {
+        if (self::$conn) {
+            self::$conn = null; // Defina a conexão como nula para fechá-la.
+         }   
+    }
 }

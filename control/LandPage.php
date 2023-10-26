@@ -16,7 +16,7 @@ class LandPage
     {
         try 
         {
-            $prefes = Preferences::getPrefe();
+            $prefes = Preferences::getAll();
             
             foreach($prefes as $prefe)
             {

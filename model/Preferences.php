@@ -2,10 +2,12 @@
 require_once './database/TTransaction.php';
 
 class Preferences  {
-    public static function getPrefe()
+    public static function getAll()
     {
         $conn = TTransaction::getConnection();
         $result = $conn->query('SELECT * FROM preferencias');
-        return $result->fetchAll();
+        $data = $result->fetchAll();
+        TTransaction::closeConnection();
+        return  $data;
     }
-}   
+}
