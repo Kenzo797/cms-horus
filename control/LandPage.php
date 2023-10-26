@@ -16,11 +16,13 @@ class LandPage
     {
         try 
         {
-            $prefes = Preferences::getAll();
-            
-            foreach($prefes as $prefe)
+            $preferences = Preferences::getAll();
+            // print_r($preferences);
+            foreach($preferences as $preference)
             {
-                return  $this->html = str_replace('{logoHeader}', $prefe['logoCabecalho'], $this->html);
+                $this->html = str_replace('{logoHeader}', $preference['logoCabecalho'], $this->html);
+                $this->html = str_replace('{facebook}', $preference['linkFacebook'], $this->html);
+                $this->html = str_replace('{instagram}', $preference['linkInstagram'], $this->html);
             }
         }
         catch(Exception $e)
