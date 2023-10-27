@@ -17,7 +17,6 @@ class LandPage
         try 
         {
             $preferences = Preferences::getAll();
-            // print_r($preferences);
             foreach($preferences as $preference)
             {
                 $this->html = str_replace('{logoHeader}', $preference['logoCabecalho'], $this->html);

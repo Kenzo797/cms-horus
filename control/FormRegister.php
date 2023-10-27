@@ -1,17 +1,14 @@
-<?php
+<?php 
+
 require_once 'model/Preferences.php';
 
-class Login
+class FormRegister
 {
     private $html;
-    private $data;
 
     public function __construct()
     {
-        $this->html = file_get_contents("Layout/html/login.html");
-        $this->data = ['id'      => '',
-                       'login'   => '',
-                       'email'   => ''];
+        $this->html = file_get_contents("Layout/html/register.html");
     }
 
     public function load()
@@ -34,6 +31,6 @@ class Login
     public function show()  
     {
         $this->load();
-        return print $this->html;
+        print $this->html;
     }
 }
