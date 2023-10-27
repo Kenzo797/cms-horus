@@ -1,16 +1,10 @@
 <?php
-
+require_once 'database/TTransaction.php';
 class User
 {
-    public function __construct($id = NULL)
-    {
-        parent::__construct($id);
-        parent::addAttribute('login');
-        parent::addAttribute('senha');
-    }
     public function save ($user)
     {
-        $conn = self::getConnection();
+        $conn = TTransaction::getConnection();
 
         if(empty($user['id'])) {
             $result = $conn->query("SELECT max(id) as next FROM usuarios");
@@ -25,7 +19,11 @@ class User
         }
         $result = $conn->prepare($sql);
         $result->execute([':id' => $user['id'],':login' => $user['login'],':senha' => $user['senha'] ]);
-
-        
+    }
+    public static function all()
+    {
+        $conn = TTransaction::getConnection();
+        $result = $conn->query("SELECT * FROM usuarios ORDER BY id");
+        return $result->fetchAll();
     }
 }
