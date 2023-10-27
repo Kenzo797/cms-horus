@@ -27,7 +27,7 @@ class LandPage
         }
         catch(Exception $e)
         {
-            $e->getMessage();
+            return print $e->getMessage();
         }
     }
 
