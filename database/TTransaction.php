@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 abstract class TTransaction 
 {
@@ -25,7 +25,13 @@ abstract class TTransaction
     public static function closeConnection()
     {
         if (self::$conn) {
-            self::$conn = null; // Defina a conexão como nula para fechá-la.
-         }   
+            self::$conn = null;
+        }   
+    }
+
+    public static function getTables()
+    {
+        $result = self::$conn->query("SHOW TABLES");
+        return $result->fetchAll();
     }
 }
