@@ -7,7 +7,7 @@ class Messages
     {
         $conn = TTransaction::getConnection();
 
-        $sql = "UPDATE 	messages SET name = :name, number = :number, message = :message, date = :date WHERE id = :id";
+        $sql = "INSERT INTO messages SET name = :name, number = :number, message = :message, date = :date WHERE id = :id";
 
         $result = $conn->prepare($sql);
         $result->execute([
