@@ -7,64 +7,76 @@ class FormPreferencias
     private $pasta;
     private $dadosAssociativos;
     private $text;
+    private $id;
 
     public function __construct()
     {
         $this->html = file_get_contents("./Layout/html/preferencias.html");
         $this->pasta = './files/';
-        $this->dadosAssociativos = [];
-        $this->text = [];
+        $this->dadosAssociativos = ['favicon' => '',
+                                    'headerLogo' => '',                                    
+                                    'imgHomeSection' => '',                                    
+                                    'imgStoreAppsSection' => '',                                    
+                                    'imgAppStore' => '',                                    
+                                    'imgPlayStore' => '',                                    
+                                    'footerLogo' => '',                                    
+    ];
+        $this->id = ['id' => ''];
+        $this->text = ['title' => '',
+                       'linkFacebook'=> '',
+                       'linkInstagram' => '',
+                       'titleHomeSection' => '',
+                       'subtitleHomeSection' => '',
+                       'titleFeaturesHome' => '',
+                       'titleTestimonySection' => '',
+                       'titleStoreSection' => '',
+                       'subTitleStoreSection' => '',
+                       'telContact' => '',
+                       'msgCopyright' => '',
+                       'urlFooter' => '',
+                       'messagePowered' => ''
+                    ];
     }
 
     public function load()
     {
         try {
             $dados = Preferences::getAll();
-            $this->text['titulo'] = $dados[0]['titulo'];
-            $this->text['linkFacebook'] = $dados[0]['linkFacebook'];
-            $this->text['tituloSecaoHome'] = $dados[0]['tituloSecaoHome'];
-            $this->text['tituloCaracteristicasHome'] = $dados[0]['tituloCaracteristicasHome'];
-            $this->text['tituloSecaoTestemunho'] = $dados[0]['tituloSecaoTestemunho'];
-            $this->text['tituloSecaoLojaApps'] = $dados[0]['tituloSecaoLojaApps'];
-            $this->text['subtituloSecaoLojaApps'] = $dados[0]['subtituloSecaoLojaApps'];
-            $this->text['telContato'] = $dados[0]['telContato'];
-            $this->text['msgCopyright'] = $dados[0]['msgCopyright'];
-            $this->text['urlRodape'] = $dados[0]['urlRodape'];
-            $this->text['msgPowered'] = $dados[0]['msgPowered'];
-            $this->dadosAssociativos['favicon'] = $dados[0]['favicon'];
-            $this->dadosAssociativos['logoCabecalho'] = $dados[0]['logoCabecalho'];
-            $this->dadosAssociativos['imgSecaoHome'] = $dados[0]['imgSecaoHome'];
-            $this->dadosAssociativos['imgSecaoLojaApps'] = $dados[0]['imgSecaoLojaApps'];
-            $this->dadosAssociativos['imgAppStore'] = $dados[0]['imgAppStore'];
-            $this->dadosAssociativos['imgPlayStore'] = $dados[0]['imgPlayStore'];
-            $this->dadosAssociativos['logoRodape'] = $dados[0]['logoRodape'];
+            // print_r($dados);
             
-
-            foreach($dados as $dado)
-            {
-                $this->html = str_replace("{titulo}",                    $dado["titulo"],       $this->html);
-                $this->html = str_replace("{linkFacebook}",              $dado["linkFacebook"], $this->html);
-                $this->html = str_replace("{linkInstagram}",             $dado["linkInstagram"], $this->html);
-                $this->html = str_replace("{tituloSecaoHome}",           $dado["tituloSecaoHome"], $this->html);
-                $this->html = str_replace("{subtituloSecaoHome}",        $dado["subtituloSecaoHome"], $this->html);
-                $this->html = str_replace("{tituloCaracteristicasHome}", $dado["tituloCaracteristicasHome"], $this->html);
-                $this->html = str_replace("{tituloSecaoTestemunho}",     $dado["tituloSecaoTestemunho"], $this->html);
-                $this->html = str_replace("{tituloSecaoLojaApps}",       $dado["tituloSecaoLojaApps"], $this->html);
-                $this->html = str_replace("{subtituloSecaoLojaApps}",    $dado["subtituloSecaoLojaApps"], $this->html);
-                $this->html = str_replace("{telContato}",                $dado["telContato"], $this->html);
-                $this->html = str_replace("{msgCopyright}",              $dado["msgCopyright"], $this->html);
-                $this->html = str_replace("{urlRodape}",                 $dado["urlRodape"], $this->html);
-                $this->html = str_replace("{msgPowered}",                $dado["msgPowered"], $this->html);
-
-                $this->html = str_replace("{favicon}",                $dado["favicon"], $this->html);
-                $this->html = str_replace("{logoCabecalho}",                $dado["logoCabecalho"], $this->html);
-                $this->html = str_replace("{imgSecaoHome}",                $dado["imgSecaoHome"], $this->html);
-                $this->html = str_replace("{imgSecaoLojaApps}",                $dado["imgSecaoLojaApps"], $this->html);
-                $this->html = str_replace("{imgAppStore}",                $dado["imgAppStore"], $this->html);
-                $this->html = str_replace("{imgPlayStore}",                $dado["imgPlayStore"], $this->html);
-                $this->html = str_replace("{logoRodape}",                $dado["logoRodape"], $this->html);
+            if(!empty($dados))
+            {       
+                $this->id = $dados[0]['id'];
+                $this->text['title'] = $dados[0]['title'];
+                $this->text['linkFacebook'] = $dados[0]['linkFacebook'];
+                $this->text['linkInstagram'] = $dados[0]['linkInstagram'];
+                $this->text['titleHomeSection'] = $dados[0]['titleHomeSection'];
+                $this->text['subtitleHomeSection'] = $dados[0]['subtitleHomeSection'];
+                $this->text['titleFeaturesHome'] = $dados[0]['titleFeaturesHome'];
+                $this->text['titleTestimonySection'] = $dados[0]['titleTestimonySection'];
+                $this->text['titleStoreSection'] = $dados[0]['titleStoreSection'];
+                $this->text['subTitleStoreSection'] = $dados[0]['subTitleStoreSection'];
+                $this->text['telContact'] = $dados[0]['telContact'];
+                $this->text['msgCopyright'] = $dados[0]['msgCopyright'];
+                $this->text['urlFooter'] = $dados[0]['urlFooter'];
+                $this->text['messagePowered'] = $dados[0]['messagePowered'];
             }
-
+           
+               
+            $this->html = str_replace("{title}",                  $this->text['title'],                 $this->html);
+            $this->html = str_replace("{linkFacebook}",           $this->text['linkFacebook'],          $this->html);
+            $this->html = str_replace("{linkInstagram}",          $this->text['linkInstagram'],         $this->html);
+            $this->html = str_replace("{titleHomeSection}",       $this->text['titleHomeSection'],      $this->html);
+            $this->html = str_replace("{subtitleHomeSection}",    $this->text['subtitleHomeSection'],   $this->html);
+            $this->html = str_replace("{titleFeaturesHome}",      $this->text['titleFeaturesHome'],     $this->html);
+            $this->html = str_replace("{titleTestimonySection}",  $this->text['titleTestimonySection'], $this->html);
+            $this->html = str_replace("{titleStoreSection}",      $this->text['titleStoreSection'],     $this->html);
+            $this->html = str_replace("{subTitleStoreSection}",   $this->text['subTitleStoreSection'],  $this->html);
+            $this->html = str_replace("{telContact}",             $this->text['telContact'],            $this->html);
+            $this->html = str_replace("{msgCopyright}",           $this->text['msgCopyright'],          $this->html);
+            $this->html = str_replace("{urlFooter}",              $this->text['urlFooter'],             $this->html);
+            $this->html = str_replace("{messagePowered}",         $this->text['messagePowered'],        $this->html);
+              
              
         } catch (Exception $e) {
             print $e->getMessage();
@@ -94,8 +106,8 @@ class FormPreferencias
                 }
             }
 
-            return $dados = Preferences::save($this->text, $this->dadosAssociativos);
-            
+            $dados = Preferences::save($this->text, $this->dadosAssociativos, $this->id);
+            return header("Location: index.php?class=FormPreferencias");
         } catch (Exception $e) 
         {
             return print $e->getMessage();
