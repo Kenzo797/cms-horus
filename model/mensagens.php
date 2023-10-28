@@ -1,17 +1,18 @@
 <?php
-require_once 'database/TTransaction.php';
+require_once 'datebase/TTransaction.php';
 
-class mensagens
+class Mensagens
 {
     public function save ($param)
     {
         $conn = TTransaction::getConnection();
 
-        $sql = "UPDATE mensagens SET nome = :nome, tel = :tel, msg = :msg, data = :data WHERE id = :id":
+        $sql = "UPDATE mensagens SET name = :name, number = :number, message = :message, date = :date WHERE id = :id":
 
         $result = $conn->prepare($sql);
-        $result->execute([':id' => $param['id'], ':nome' => $param['nome'], ':tel' => $param['tel'],
-        ':msg' => $param['msg'], ':data' => $param['data']]);
+        $result->execute([':id' => $param['id'], ':name' => $param['name'], ':number' => $param['number'],
+        ':message' => $param['message'], ':date' => $param['date']]);
+        TTransaction::closeConnection();
     }
     public static function all()
     {
@@ -19,5 +20,6 @@ class mensagens
 
         $result = $conn->query("SELECT * FROM mensagens ORDER BY id");
         return $result->fetchAll();
+        TTransaction::closeConnection();
     }
 }

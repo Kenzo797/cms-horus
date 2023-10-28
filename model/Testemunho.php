@@ -7,8 +7,8 @@ class Testemunho
     {
         $conn = TTransaction::getConnection();
 
-        $sql = "UPDATE testenhos SET nome = :nome, funcao = :funcao, titulo = :titulo, descricao = :descricao,
-        foto = :foto, imgDeFundo = :imgDeFundo WHERE id = :id";
-        
+        $sql = "UPDATE testenhos SET name = :name, function = :function, title = :title, description = :description,
+        photo = :photo, backgroundPhoto = :backgroundPhoto WHERE id = :id";
+        TTransaction::closeConnection();
     }
 }
