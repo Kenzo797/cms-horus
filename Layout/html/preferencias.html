@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="pt-br" data-bs-theme="auto">
+
+<head>
+    <script src="../Layout/js/color-modes.js"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>Login</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+
+    <link href="./Layout/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="./Layout/css/sign-in.css" rel="stylesheet">
+</head>
+
+<body class="py-4 bg-body-tertiary">
+    <main class="container">
+        <form class="row" enctype="multipart/form-data" method="post"
+            action="index.php?class=FormPreferencias&method=save">
+            <div class="col-md-6">
+                <h3>Textos</h3>
+                <div class="mb-3">
+                    <label for="titulo" class="form-label">Título</label>
+                    <input type="text" class="form-control" id="titulo" name="titulo" value="{titulo}">
+                </div>
+                <div class="mb-3">
+                    <label for="linkFacebook" class="form-label">Link do Facebook</label>
+                    <input type="text" class="form-control" id="linkFacebook" name="linkFacebook"
+                        value="{linkFacebook}">
+                </div>
+                <div class="mb-3">
+                    <label for="linkInstagram" class="form-label">Link do Instagram</label>
+                    <input type="text" class="form-control" id="linkInstagram" name="linkInstagram"
+                        value="{linkInstagram}">
+                </div>
+                <div class="mb-3">
+                    <label for="tituloSecaoHome" class="form-label">Título da Seção Home</label>
+                    <input type="text" class="form-control" id="tituloSecaoHome" name="tituloSecaoHome"
+                        value="{tituloSecaoHome}">
+                </div>
+                <div class="mb-3">
+                    <label for="subtituloSecaoHome" class="form-label">Subtítulo da Seção Home</label>
+                    <input type="text" class="form-control" id="subtituloSecaoHome" name="subtituloSecaoHome"
+                        value="{subtituloSecaoHome}">
+                </div>
+                <div class="mb-3">
+                    <label for="tituloCaracteristicasHome" class="form-label">Título das Características da Home</label>
+                    <input type="text" class="form-control" id="tituloCaracteristicasHome"
+                        name="tituloCaracteristicasHome" value="{tituloCaracteristicasHome}">
+                </div>
+                <div class="mb-3">
+                    <label for="tituloSecaoTestemunho" class="form-label">Título da Seção de Testemunhos</label>
+                    <input type="text" class="form-control" id="tituloSecaoTestemunho" name="tituloSecaoTestemunho"
+                        value="{tituloSecaoTestemunho}">
+                </div>
+                <div class="mb-3">
+                    <label for="tituloSecaoLojaApps" class="form-label">Título da Seção Loja de Aplicativos</label>
+                    <input type="text" class="form-control" id="tituloSecaoLojaApps" name="tituloSecaoLojaApps"
+                        value="{tituloSecaoLojaApps}">
+                </div>
+                <div class="mb-3">
+                    <label for="subtituloSecaoLojaApps" class="form-label">Subtítulo da Seção Loja de
+                        Aplicativos</label>
+                    <input type="text" class="form-control" id="subtituloSecaoLojaApps" name="subtituloSecaoLojaApps"
+                        value="{subtituloSecaoLojaApps}">
+                </div>
+                <div class="mb-3">
+                    <label for="telContato" class="form-label">Telefone de Contato</label>
+                    <input type="text" class="form-control" id="telContato" name="telContato" value="{telContato}">
+                </div>
+                <div class="mb-3">
+                    <label for="msgCopyright" class="form-label">Mensagem de Copyright</label>
+                    <input type="text" class="form-control" id="msgCopyright" name="msgCopyright"
+                        value="{msgCopyright}">
+                </div>
+                <div class="mb-3">
+                    <label for="urlRodape" class="form-label">URL do Rodapé</label>
+                    <input type="text" class="form-control" id="urlRodape" name="urlRodape" value="{urlRodape}">
+                </div>
+                <div class="mb-3">
+                    <label for="msgPowered" class="form-label">Mensagem Powered</label>
+                    <input type="text" class="form-control" id="msgPowered" name="msgPowered" value="{msgPowered}">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h3>Imagens</h3>
+                <div class="mb-3">
+                    <label for="favicon" class="form-label">Favicon</label>
+                    <input type="file" class="form-control" id="favicon" name="favicon" value="{favicon}">
+                </div>
+                <div class="mb-3">
+                    <label for="logoCabecalho" class="form-label">Logo do Cabeçalho</label>
+                    <input type="file" class="form-control" id="logoCabecalho" name="logoCabecalho"
+                        value="{logoCabecalho}">
+                </div>
+                <div class="mb-3">
+                    <label for="imgSecaoHome" class="form-label">Imagem da Seção Home</label>
+                    <input type="file" class="form-control" id="imgSecaoHome" name="imgSecaoHome"
+                        value="{imgSecaoHome}">
+                </div>
+                <div class="mb-3">
+                    <label for="imgSecaoLojaApps" class="form-label">Imagem da Seção Loja de Aplicativos</label>
+                    <input type="file" class="form-control" id="imgSecaoLojaApps" name="imgSecaoLojaApps"
+                        value="{imgSecaoLojaApps}">
+                </div>
+                <div class="mb-3">
+                    <label for="imgAppStore" class="form-label">Imagem da App Store</label>
+                    <input type="file" class="form-control" id="imgAppStore" name="imgAppStore" value="{imgAppStore}">
+                </div>
+                <div class="mb-3">
+                    <label for="imgPlayStore" class="form-label">Imagem da Play Store</label>
+                    <input type="file" class="form-control" id="imgPlayStore" name="imgPlayStore"
+                        value="{imgPlayStore}">
+                </div>
+                <div class="mb-3">
+                    <label for="logoRodape" class="form-label">Logo do Rodapé</label>
+                    <input type="file" class="form-control" id="logoRodape" name="logoRodape" value="{logoRodape}">
+                </div>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </div>
+        </form>
+    </main>
+    <script src="./Layout/js/bootstrap.bundle.min.js"></script>
+</body>
+
+
+</html>

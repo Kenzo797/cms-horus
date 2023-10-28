@@ -13,10 +13,10 @@ $method = isset($_REQUEST['method']) ? $_REQUEST['method'] : null;
   
 if(class_exists($class))
 {
-    $pagina = new $class($_REQUEST);
+    $pagina = new $class($_REQUEST, $_FILES);
     if(!empty($method) and method_exists($class, $method))
     {
-        $pagina->$method($_REQUEST);
+        $pagina->$method($_REQUEST, $_FILES);
     }
     $pagina->show();
 } else {

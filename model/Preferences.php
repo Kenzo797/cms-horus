@@ -6,61 +6,64 @@ class Preferences  {
     {
         $conn = TTransaction::getConnection();
         $result = $conn->query('SELECT * FROM preferencias');
-        $data = $result->fetchAll();
+        $data = $result->fetchAll(PDO::FETCH_ASSOC);
         TTransaction::closeConnection();
         return  $data;
     }
 
-    public static function save($params)
+    public static function save($text, $img)
     {
         $conn = TTransaction::getConnection();
 
-        $sql = "UPDATE preferencias SET
-                titulo                    = :titulo,
-                favicon                   = :favico,
-                logoCabecalho             = :logoCabecalho,
-                linkFacebook              = :linkFacebook,
-                linkInstagram             = :linkInstagram,
-                tituloSecaoHome           = :tituloSecaoHome,
-                subtituloSecaoHome        = :subtituloSecaoHome,
-                imgSecaoHome              = :imgSecaoHome,
-                tituloCaracteristicasHome = :tituloCaracteristicasHome,
-                tituloSecaoTestemunho     = :tituloSecaoTestemunho,
-                tituloSecaoLojaApps       = :tituloSecaoLojaApps,
-                subtituloSecaoLojaApps    = :subtituloSecaoLojaApps,
-                imgSecaoLojaApps          = :imgSecaoLojaApps,
-                imgAppStore               = :imgAppStore;
-                imgPlayStore              = :imgPlayStore,
-                telContato                = :telContato,
-                logoRodape                = :logoRodape,
-                msgCopyright              = :msgCopyright,
-                urlRodape                 = :urlRodape,
-                msgPowered                = :msgPowered 
-                WHERE id                  = :id";
+         $sql = "UPDATE preferencias SET
+            titulo                    = :titulo,
+            favicon                   = :favicon,
+            logoCabecalho             = :logoCabecalho,
+            linkFacebook              = :linkFacebook,
+            linkInstagram             = :linkInstagram,
+            tituloSecaoHome           = :tituloSecaoHome,
+            subtituloSecaoHome        = :subtituloSecaoHome,
+            imgSecaoHome              = :imgSecaoHome,
+            tituloCaracteristicasHome = :tituloCaracteristicasHome,
+            tituloSecaoTestemunho     = :tituloSecaoTestemunho,
+            tituloSecaoLojaApps       = :tituloSecaoLojaApps,
+            subtituloSecaoLojaApps    = :subtituloSecaoLojaApps,
+            imgSecaoLojaApps          = :imgSecaoLojaApps,
+            imgAppStore               = :imgAppStore,
+            imgPlayStore              = :imgPlayStore,
+            telContato                = :telContato,
+            logoRodape                = :logoRodape,
+            msgCopyright              = :msgCopyright,
+            urlRodape                 = :urlRodape,
+            msgPowered                = :msgPowered
+            WHERE id = 0";
+
         $result = $conn->prepare($sql);
-        $result->execute([':id' => $params['id'],
-                          ':titulo' => $params['titulo'],
-                          ':favicon' => $params['favicon'],
-                          ':logoCabecalho' => $params['logoCabecalho'],
-                          ':linkFacebook' => $params['linkFacebook'],
-                          ':linkInstagram' => $params['linkInstagram'],
-                          ':tituloSecaoHome' => $params['tituloSecaoHome'],
-                          ':subtituloSecaoHome' => $params['subtituloSecaoHome'],
-                          ':imgSecaoHome' => $params['imgSecaoHome'],
-                          ':tituloCaracteristicasHome' => $params['tituloCaracteristicasHome'],
-                          ':tituloSecaoTestemunho' => $params['tituloSecaoTestemunho'],
-                          ':tituloSecaoLojaApps' => $params['tituloSecaoLojaApps'],
-                          ':subtituloSecaoLojaApps' => $params['subtituloSecaoLojaApps'],
-                          ':imgSecaoLojaApps' => $params['imgSecaoLojaApps'],
-                          ':imgAppStore' => $params['imgAppStore'],
-                          ':imgPlayStore' => $params['imgPlayStore'],
-                          ':telContato' => $params['telContato'],
-                          ':logoRodape' => $params['logoRodape'],
-                          ':msgCopyright' => $params['msgCopyright'],
-                          ':urlRodape' => $params['urlRodape'],
-                          ':msgPowered' => $params['msgPowered']
+        $result->execute([
+                          ':titulo' => $text['titulo'],
+                          ':favicon' => $img['favicon'],
+                          ':logoCabecalho' => $img['logoCabecalho'],
+                          ':linkFacebook' => $text['linkFacebook'],
+                          ':linkInstagram' => $text['linkInstagram'],
+                          ':tituloSecaoHome' => $text['tituloSecaoHome'],
+                          ':subtituloSecaoHome' => $text['subtituloSecaoHome'],
+                          ':imgSecaoHome' => $img['imgSecaoHome'],
+                          ':tituloCaracteristicasHome' => $text['tituloCaracteristicasHome'],
+                          ':tituloSecaoTestemunho' => $text['tituloSecaoTestemunho'],
+                          ':tituloSecaoLojaApps' => $text['tituloSecaoLojaApps'],
+                          ':subtituloSecaoLojaApps' => $text['subtituloSecaoLojaApps'],
+                          ':imgSecaoLojaApps' => $img['imgSecaoLojaApps'],
+                          ':imgAppStore' => $img['imgAppStore'],
+                          ':imgPlayStore' => $img['imgPlayStore'],
+                          ':telContato' => $text['telContato'],
+                          ':logoRodape' => $img['logoRodape'],
+                          ':msgCopyright' => $text['msgCopyright'],
+                          ':urlRodape' => $text['urlRodape'],
+                          ':msgPowered' => $text['msgPowered']
                         ]);
-        return $params;
-        TTtransaction::closeConnection();  
+        TTransaction::closeConnection();  
     }
 }
+
+ 
+        // return $params;
