@@ -7,18 +7,20 @@ class CaracteristicasSessaoHome
     {
         $conn = TTransaction::getConnection();
 
-        $sql = "UPDATE caracteristicassessaohome SET titulo = :titulo, descricao = :descricao WHERE idCaracteristicas = :idCaracteristicas";
+        $sql = "UPDATE caracteristicassessaohome SET title = :title, description = :description WHERE idCharacteristics = :idCharacteristics";
 
         $result = $conn->prepare($sql);
-        $result->execute([':idCaracteristicas' => $param['idCaracteristicas'], 
-        ':titulo' => $param['titulo'], ':descricao' => $param['descricao']]);
+        $result->execute([':idCharacteristics' => $param['idCharacteristics'], 
+        ':title' => $param['title'], ':description' => $param['description']]);
+        TTransaction::closeConnection();
     }
     public static function all() 
     {
         $conn = TTransaction::getConnection();
 
-        $result = $conn->query("SELECT * FROM caracteristicassessaohome ORDER BY idCaracteristicas");
+        $result = $conn->query("SELECT * FROM caracteristicassessaohome ORDER BY idCharacteristics");
         return $result->fetchAll();
+        TTransaction::closeConnection();
     }
 }
 
