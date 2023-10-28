@@ -3,11 +3,11 @@ require_once 'database/TTransaction.php';
 
 class Messages
 {
-    public function save($param)
+    public static function save($param)
     {
         $conn = TTransaction::getConnection();
-
-        $sql = "UPDATE 	messages SET name = :name, number = :number, message = :message, date = :date WHERE id = :id";
+        $date = date("Y-m-d");
+        $sql = "INSERT INTO messages SET name = :name, number = :number, message = :message, date = :date WHERE id = :id";
 
         $result = $conn->prepare($sql);
         $result->execute([
