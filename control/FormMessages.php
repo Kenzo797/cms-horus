@@ -17,10 +17,10 @@ class FormMessages
         'message' => null,
         'date' => null];
     }
-    public function save($param)
+    public static function save($param)
     {
         try{
-            $this->data = Message::save($param);
+            $this->data = Messages::save($param);
             print "mensagem salva";
         }
         catch (Exception $e){
