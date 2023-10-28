@@ -19,7 +19,7 @@ class LandPage
             $preferences = Preferences::getAll();
             foreach($preferences as $preference)
             {
-                $this->html = str_replace('{logoHeader}', $preference['logoCabecalho'], $this->html);
+                $this->html = str_replace('{headerLogo}', $preference['headerLogo'], $this->html);
                 $this->html = str_replace('{facebook}', $preference['linkFacebook'], $this->html);
                 $this->html = str_replace('{instagram}', $preference['linkInstagram'], $this->html);
             }
