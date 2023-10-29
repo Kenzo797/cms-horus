@@ -36,6 +36,33 @@ class User
         TTransaction::closeConnection();
     }
 
+    public static function authenticate($email, $password)
+    {
+        $conn = TTransaction::getConnection();
+
+        $sql = "SELECT email, password FROM users WHERE email = :email";
+        $result = $conn->prepare($sql);
+        $result->execute([':email' => $email]);
+
+        if ($result->rowCount() > 0) {
+            $user = $result->fetch(PDO::FETCH_ASSOC);
+
+            if (md5($password) == $user['password'])
+            {
+                return $user['email'];
+            } else
+            {
+                throw new Exception("Senha incorreta");
+            }
+        }
+        else
+        {
+            throw new Exception("Email ou senha incorretos");
+        }
+        TTransaction::closeConnection();
+        return;
+    }
+
     public static function all()
     {
         $conn = TTransaction::getConnection();

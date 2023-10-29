@@ -1,5 +1,6 @@
 <?php
 require_once 'model/Preferences.php';
+require_once 'model/User.php';
 
 class Login
 {
@@ -28,6 +29,30 @@ class Login
         catch(Exception $e)
         {
            print $e->getMessage();
+        }
+    }
+
+    public function login($params)
+    {   
+        try {
+            // print_r($params);
+            if(isset($params['email']) and isset($params['password']))
+            {
+                if(strlen($params['email']) == 0)
+                {
+                    print "Preecha o email";
+                } elseif ((strlen($params['password']) == 0))
+                {
+                    print "Preecha a senha";
+                } else {
+                    $res =  User::authenticate($params['email'], $params['password']);
+                    print $res;
+                } 
+
+            }
+        } catch (Exception $e) 
+        {
+            return print $e->getMessage();
         }
     }
 
