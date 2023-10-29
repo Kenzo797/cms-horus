@@ -10,8 +10,8 @@ class Messages
         if(!empty($data['id']))
         {
             $date = date("Y-m-d");
-            $sql = "INSERT INTO depositions (id, name, number, message, date) 
-                            VALUES (:id, :name, :number, :message, :date)";
+            $sql = "INSERT INTO messages (id, name, tel, message, date) 
+                            VALUES (:id, :name, :tel, :message, :date)";
 
         }
         else
@@ -21,20 +21,19 @@ class Messages
             $data['id'] = (int) $row['next'] + 1;
             $sql = "UPDATE messages SET 
                     name = :name, 
-                    number = :number, 
+                    tel = :tel, 
                     message = :message, 
                     date = :date 
                     WHERE id = :id";
         }
         
             $result = $conn->prepare($sql);
-            $result->execute([
-            ':id' => $param['id'],
-            ':name' => $param['name'],
-            ':number' => $param['number'],
-            ':message' => $param['message'],
-            ':date' => $param['date']
-            ]);
+            $result->execute([':id' => $param['id'],
+                                ':name' => $param['name'],
+                                ':tel' => $param['tel'],
+                                ':message' => $param['message'],
+                                ':date' => $param['date']]);
+                                
             TTransaction::closeConnection();
 
     }

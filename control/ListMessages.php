@@ -26,7 +26,7 @@ class ListMessages
                 $item = str_replace('{id}',       $message['id'],       $item);
                 $item = str_replace('{name}',     $message['name'],     $item);
                 $item = str_replace('{email}',    $message['email'],    $item);
-                $item = str_replace('{number}',   $message['number'],   $item);
+                $item = str_replace('{tel}',      $message['tel'],      $item);
                 $item = str_replace('{message}',  $message['message'],  $item);
                 $item = str_replace('{date}',     $message['date'],     $item);
 

@@ -14,7 +14,7 @@ class FormMessages
         $this->data = ['id' => '',
         'name' => '',
         'email' => '',
-        'number' => '',
+        'tel' => '',
         'message' => '',
         'date' => ''];
     }
@@ -47,7 +47,7 @@ class FormMessages
         $this->html = str_replace('{id}',           $this->data['id'],       $this->html);
         $this->html = str_replace('{name}',         $this->data['name'],     $this->html);
         $this->html = str_replace('{email}',        $this->data['email'],    $this->html);
-        $this->html = str_replace('{number}',       $this->data['number'],   $this->html);
+        $this->html = str_replace('{tel}',          $this->data['tel'],      $this->html);
         $this->html = str_replace('{message}',      $this->data['message'],  $this->html);
         $this->html = str_replace('{date}',         $this->data['date'],     $this->html);
         print $this->html;
