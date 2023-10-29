@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="pt-br" data-bs-theme="auto">
+
+<head>
+    <script src="../Layout/js/color-modes.js"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>Login</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+
+    <link href="./Layout/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="./Layout/css/sign-in.css" rel="stylesheet">
+</head>
+
+<body class="py-4 bg-body-tertiary">
+    <main class="container">
+        <form class="row" enctype="multipart/form-data" method="post"
+            action="index.php?class=FormDepositions&method=save">
+            <div class="col-md-6">
+                <h3>Textos</h3>
+                <div class="mb-3">
+                    <label for="id" class="form-label">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" value="{id}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="title" class="form-label">Título</label>
+                    <input type="text" class="form-control" id="title" name="title" value="{title}">
+                </div>
+                <div class="mb-3">
+                    <label for="function" class="form-label">Função</label>
+                    <input type="text" class="form-control" id="function" name="function" value="{function}">
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Descrição</label>
+                    <input type="text" class="form-control" id="description" name="description" value="{description}">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h3>Imagens</h3>
+                <div class="mb-3">
+                    <label for="photograph" class="form-label">Foto</label>
+                    <input type="file" class="form-control" id="photograph" name="photograph" value="{photograph}">
+                </div>
+                <div class="mb-3">
+                    <label for="backgroundImage" class="form-label">Imagem de background</label>
+                    <input type="file" class="form-control" id="backgroundImage" name="backgroundImage"
+                        value="{backgroundImage}">
+                </div>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </div>
+        </form>
+    </main>
+    <script src="./Layout/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
