@@ -42,16 +42,7 @@ class ListDepositions
 
     public function delete($params)
     {
-        try
-        {
-            $id = (int) $params['id'];
-            Depositions::delete($id);
-            return header("Location: index.php?class=ListDepositions");
-        }
-        catch (Exception $e)
-        {
-            return print $e->getMessage();
-        }
+      
     }
 
     public function show()
