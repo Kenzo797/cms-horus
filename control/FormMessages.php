@@ -53,4 +53,9 @@ class FormMessages
             print $e->getMessage();
         }
     }
+    public function show()
+    {
+        $this->load();
+        return print $this->html;
+    }
 }
