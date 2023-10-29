@@ -10,7 +10,7 @@ class FormMessages
     public function __construct()
     {
         
-        $this->html = file_get_contents('Layout/html/index.html');
+        $this->html = file_get_contents('Layout/html/messages.html');
         $this->data = ['id' => '',
         'name' => '',
         'email' => '',
@@ -18,32 +18,8 @@ class FormMessages
         'message' => '',
         'date' => ''];
     }
-    public function load ()
-    {
-        try{
-            $dados = Messages::getAll();
-            $this->data['id'] =      $dados['id'];
-            $this->data['name'] =    $dados['name'];
-            $this->data['email'] =   $dados['email'];
-            $this->data['number'] =  $dados['number'];
-            $this->data['message'] = $dados['message'];
-            $this->data['date'] =    $dados['date'];
-
-            foreach($dados as $dado)
-            {
-                $this->html = str_replace("{id}",      $dado["id"],      $this->html);
-                $this->html = str_replace("{name}",    $dado["name"],    $this->html);
-                $this->html = str_replace("{email}",   $dado["email"],   $this->html);
-                $this->html = str_replace("{number}",  $dado["number"],  $this->html);
-                $this->html = str_replace("{message}", $dado["message"], $this->html);
-                $this->html = str_replace("{date}",    $dado["date"],    $this->html);
-            }
-        }
-        catch (Exception $e) {
-            print $e->getMessage();
-        }
-    }
-    public static function save($param)
+   
+    public function save($param)
     {
         try{
             $this->data = Messages::save($param);
@@ -54,11 +30,11 @@ class FormMessages
             print $e->getMessage();
         }
     }
-    public function edit($params)
+    public function edit($param)
     {
         try 
         {
-            $id  = (int) $params['id'];
+            $id  = (int) $param['id'];
             $this->data = Messages::find($id);
         }
         catch(Exception $e)
@@ -66,9 +42,14 @@ class FormMessages
             return  print $e->getMessage();
         }
     }
-    public function show()
+    public function show()  
     {
-        $this->load();
-        return print $this->html;
+        $this->html = str_replace('{id}',           $this->data['id'],       $this->html);
+        $this->html = str_replace('{name}',         $this->data['name'],     $this->html);
+        $this->html = str_replace('{email}',        $this->data['email'],    $this->html);
+        $this->html = str_replace('{number}',       $this->data['number'],   $this->html);
+        $this->html = str_replace('{message}',      $this->data['message'],  $this->html);
+        $this->html = str_replace('{date}',         $this->data['date'],     $this->html);
+        print $this->html;
     }
 }
