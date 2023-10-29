@@ -22,7 +22,7 @@ class Login
             
             foreach($preferences as $preference)
             {
-                return  $this->html = str_replace('{logo}', $preference['logoCabecalho'], $this->html);
+                return  $this->html = str_replace('{logo}', $preference['headerLogo'], $this->html);
             }
         }
         catch(Exception $e)
