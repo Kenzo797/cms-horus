@@ -10,29 +10,42 @@ class ListMessages
 
     public function __construct()
     {
-        $this->html = file_get_contents('FAZER A LISTA HTML');
+        $this->html = file_get_contents('Layout/html/listMessages.html');
         $this->items = '';
     }
     public function load()
     {
         try
         {
-            $dados = Messages::all();
+            $messages = Messages::getAll();
 
-            foreach ($dados as $dado)
+            foreach ($messages as $message)
             {
                 $item = file_get_contents('FAZER A LISTA HTML');
 
-                $item = str_replace('{id}',       $pessoa['id'],       $item);
-                $item = str_replace('{name}',     $pessoa['name'],     $item);
-                $item = str_replace('{email}',    $pessoa['email'],    $item);
-                $item = str_replace('{number}',   $pessoa['number'],   $item);
-                $item = str_replace('{message}',  $pessoa['message'],  $item);
-                $item = str_replace('{date}',     $pessoa['date'],     $item);
+                $item = str_replace('{id}',       $message['id'],       $item);
+                $item = str_replace('{name}',     $message['name'],     $item);
+                $item = str_replace('{email}',    $message['email'],    $item);
+                $item = str_replace('{number}',   $message['number'],   $item);
+                $item = str_replace('{message}',  $message['message'],  $item);
+                $item = str_replace('{date}',     $message['date'],     $item);
 
                 $this->items .= $item;
             }
             return $this->html = str_replace('{items}', $this->items, $this->html);
+        }
+        catch (Exception $e)
+        {
+            return print $e->getMessage();
+        }
+    }
+    public function delete($params)
+    {
+        try
+        {
+            $id = (int) $params['id'];
+            Messages::delete($id);
+            return header("Location: index.php?class=ListMessages");
         }
         catch (Exception $e)
         {

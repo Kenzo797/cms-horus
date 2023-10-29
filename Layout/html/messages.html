@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt-br" data-bs-theme="auto">
+
+<head>
+    <script src="../Layout/js/color-modes.js"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>Login</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+
+    <link href="./Layout/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="./Layout/css/sign-in.css" rel="stylesheet">
+</head>
+
+<body class="py-4 bg-body-tertiary">
+    <main class="container">
+        <form class="row" enctype="multipart/form-data" method="post"
+            action="index.php?class=FormMessages&method=save">
+            <div class="col-md-6">
+                <h3>Textos</h3>
+                <div class="mb-3">
+                    <label for="id" class="form-label">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" value="{id}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="title" class="form-label">Nome</label>
+                    <input type="text" class="form-control" id="name" name="title" value="{name}">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" value="{email}">
+                </div>
+                <div class="mb-3">
+                    <label for="number" class="form-label">Número</label>
+                    <input type="text" class="form-control" id="number" name="number" value="{number}">
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Mensagem</label>
+                    <input type="text" class="form-control" id="message" name="message" value="{message}">
+                </div>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </div>
+        </form>
+    </main>
+    <script src="./Layout/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
