@@ -1,7 +1,7 @@
 <?php
 
 require_once "model/Preferences.php";
-class FormPreferencias
+class FormPreferences
 {
     private $html;
     private $pasta;
@@ -109,7 +109,7 @@ class FormPreferencias
             }
 
             $dados = Preferences::save($this->text, $this->dadosAssociativos, $this->id);
-            return header("Location: index.php?class=FormPreferencias");
+            return header("Location: index.php?class=FormPreferences");
         } catch (Exception $e) 
         {
             return print $e->getMessage();
