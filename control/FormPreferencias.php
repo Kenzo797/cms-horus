@@ -60,8 +60,10 @@ class FormPreferencias
                 $this->text['msgCopyright'] = $dados[0]['msgCopyright'];
                 $this->text['urlFooter'] = $dados[0]['urlFooter'];
                 $this->text['messagePowered'] = $dados[0]['messagePowered'];
+
+                // ver com as img
             }
-           
+           // TODO - accept=".jpg, .jpeg, .png" />
                
             $this->html = str_replace("{title}",                  $this->text['title'],                 $this->html);
             $this->html = str_replace("{linkFacebook}",           $this->text['linkFacebook'],          $this->html);
