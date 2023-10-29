@@ -1,6 +1,8 @@
 <?php
 
 require_once 'model/Preferences.php';
+require_once 'model/Depositions.php';
+require_once 'control/DepositionsComponent.php';
 
 class LandPage
 {
@@ -16,13 +18,37 @@ class LandPage
     {
         try 
         {
+            $depositions = new DepositionsComponent();
             $preferences = Preferences::getAll();
+           
+
             foreach($preferences as $preference)
             {
-                $this->html = str_replace('{headerLogo}', $preference['headerLogo'], $this->html);
-                $this->html = str_replace('{facebook}', $preference['linkFacebook'], $this->html);
-                $this->html = str_replace('{instagram}', $preference['linkInstagram'], $this->html);
+                $this->html = str_replace('{headerLogo}',                    $preference['headerLogo'],           $this->html);
+                $this->html = str_replace('{favicon}',                       $preference['favicon'],              $this->html);
+                $this->html = str_replace('{imgHomeSection}',                $preference['imgHomeSection'],       $this->html);
+
+                $this->html = str_replace('{facebook}',                      $preference['linkFacebook'],          $this->html);
+                $this->html = str_replace('{instagram}',                     $preference['linkInstagram'],         $this->html);
+                $this->html = str_replace('{title}',                         $preference['title'],                 $this->html);
+                $this->html = str_replace('{titleHomeSection}',              $preference['titleHomeSection'],      $this->html);
+                $this->html = str_replace('{titleFeaturesHome}',             $preference['titleFeaturesHome'],     $this->html);
+                $this->html = str_replace('{titleTestimonySection}',         $preference['titleTestimonySection'], $this->html);
+
+                $this->html = str_replace('{titleStoreSection}',             $preference['titleStoreSection'],     $this->html);
+                $this->html = str_replace('{subTitleStoreSection}',          $preference['subTitleStoreSection'],  $this->html);
+                $this->html = str_replace('{imgStoreAppsSection}',           $preference['imgStoreAppsSection'],   $this->html);
+                $this->html = str_replace('{imgAppStore}',                   $preference['imgAppStore'],           $this->html);
+                $this->html = str_replace('{imgPlayStore}',                  $preference['imgPlayStore'],          $this->html);
+                $this->html = str_replace('{telContact}',                    $preference['telContact'],            $this->html);
+                $this->html = str_replace('{footerLogo}',                    $preference['footerLogo'],            $this->html);
+                $this->html = str_replace('{msgCopyright}',                  $preference['msgCopyright'],          $this->html);
+                $this->html = str_replace('{urlFooter}',                     $preference['urlFooter'],             $this->html);
+                $this->html = str_replace('{messagePowered}',                $preference['messagePowered'],        $this->html);
             }
+
+            $this->html = str_replace("{depositions}", $depositions->get(), $this->html);
+            // TODO - add no datagrid o campo name em depositions
         }
         catch(Exception $e)
         {
