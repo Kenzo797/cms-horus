@@ -50,10 +50,13 @@ class FormDepositions
                 }
             }
 
-            $this->data  = $request;
-            // $this->data['title']        = $request['title'];
-            // $this->data['function']     = $request['function'];
-            // $this->data['description']  = $request['description'];
+
+            $this->data['id']             = $request['id'];
+            $this->data['name']             = $request['name'];
+            $this->data['function']         = $request['function'];
+            $this->data['title']            = $request['title'];
+            $this->data['description']      = $request['description'];
+
 
 
             Depositions::save($this->data);

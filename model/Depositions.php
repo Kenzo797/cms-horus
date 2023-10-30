@@ -1,51 +1,53 @@
 <?php
 require_once 'database/TTransaction.php';
 
-class Depositions 
+class Depositions
 {
 
     public static function getAll()
     {
         $conn = TTransaction::getConnection();
         $result = $conn->query('SELECT * FROM depositions');
-        $data = $result->fetchAll(PDO::FETCH_ASSOC); 
+        $data = $result->fetchAll(PDO::FETCH_ASSOC);
         TTransaction::closeConnection();
         return $data;
     }
 
-    public static function save ($data)
+    public static function save($data)
     {
         $conn = TTransaction::getConnection();
-        if(!empty($data['id']))
-        {
-             $sql = "UPDATE depositions SET
-                            title           = :title,
-                            function        = :function,
-                            description     = :description,
-                            photograph      = :photograph,
-                            backgroundImage = :backgroundImage
-                            WHERE id        = :id";
-        }
-        else
-        {   
+        if (!empty($data['id'])) {
+            $sql = "UPDATE depositions SET
+                        name            = :name,
+                        `function`      = :function,
+                        title           = :title,
+                        description     = :description,
+                        photograph      = :photograph,
+                        backgroundImage = :backgroundImage
+                        WHERE id        = :id";
+        } else {
             $result = $conn->query("SELECT max(id) as next FROM depositions");
             $row = $result->fetch();
-            $data['id'] = (int) $row['next'] + 1; 
+            $data['id'] = (int) $row['next'] + 1;
 
-            $sql = "INSERT INTO depositions (id, title, function, description, photograph, backgroundImage) 
-                           VALUES (:id, :title, :function, :description, :photograph, :backgroundImage)";
+            $sql = "INSERT INTO depositions (id, name, `function`, title, description, photograph, backgroundImage) 
+                       VALUES (:id, :name, :function, :title, :description, :photograph, :backgroundImage)";
         }
 
         $result = $conn->prepare($sql);
-        $result->execute([':id'               => $data['id'], 
-                          ':title'            => $data['title'],
-                          ':function'         => $data['function'],
-                          ':description'      => $data['description'],
-                          ':photograph'       => $data['photograph'],
-                          ':backgroundImage'  => $data['backgroundImage']]);
-        
+        $result->execute([
+            ':id'               => $data['id'],
+            ':name'             => $data['name'],
+            ':function'         => $data['function'],
+            ':title'            => $data['title'],
+            ':description'      => $data['description'],
+            ':photograph'       => $data['photograph'],
+            ':backgroundImage'  => $data['backgroundImage']
+        ]);
+
         TTransaction::closeConnection();
     }
+
 
     public static function find($id)
     {

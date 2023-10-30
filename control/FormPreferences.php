@@ -13,29 +13,31 @@ class FormPreferences
     {
         $this->html = file_get_contents("./Layout/html/preferencias.html");
         $this->pasta = './files/';
-        $this->dadosAssociativos = ['favicon' => '',
-                                    'headerLogo' => '',                                    
-                                    'imgHomeSection' => '',                                    
-                                    'imgStoreAppsSection' => '',                                    
-                                    'imgAppStore' => '',                                    
-                                    'imgPlayStore' => '',                                    
-                                    'footerLogo' => '',                                    
-    ];
+        $this->dadosAssociativos = [
+            'favicon' => '',
+            'headerLogo' => '',
+            'imgHomeSection' => '',
+            'imgStoreAppsSection' => '',
+            'imgAppStore' => '',
+            'imgPlayStore' => '',
+            'footerLogo' => '',
+        ];
         $this->id = ['id' => ''];
-        $this->text = ['title' => '',
-                       'linkFacebook'=> '',
-                       'linkInstagram' => '',
-                       'titleHomeSection' => '',
-                       'subtitleHomeSection' => '',
-                       'titleFeaturesHome' => '',
-                       'titleTestimonySection' => '',
-                       'titleStoreSection' => '',
-                       'subTitleStoreSection' => '',
-                       'telContact' => '',
-                       'msgCopyright' => '',
-                       'urlFooter' => '',
-                       'messagePowered' => ''
-                    ];
+        $this->text = [
+            'title' => '',
+            'linkFacebook' => '',
+            'linkInstagram' => '',
+            'titleHomeSection' => '',
+            'subtitleHomeSection' => '',
+            'titleFeaturesHome' => '',
+            'titleTestimonySection' => '',
+            'titleStoreSection' => '',
+            'subTitleStoreSection' => '',
+            'telContact' => '',
+            'msgCopyright' => '',
+            'urlFooter' => '',
+            'messagePowered' => ''
+        ];
     }
 
     public function load()
@@ -43,9 +45,8 @@ class FormPreferences
         try {
             $dados = Preferences::getAll();
             // print_r($dados);
-            
-            if(!empty($dados))
-            {       
+
+            if (!empty($dados)) {
                 $this->id = $dados[0]['id'];
                 $this->text['title'] = $dados[0]['title'];
                 $this->text['linkFacebook'] = $dados[0]['linkFacebook'];
@@ -71,8 +72,8 @@ class FormPreferences
                 $this->dadosAssociativos['footerLogo']          = $dados[0]['footerLogo'];
                 // ver com as img
             }
-           // TODO - accept=".jpg, .jpeg, .png" />
-               
+            // TODO - accept=".jpg, .jpeg, .png" />
+
             $this->html = str_replace("{title}",                  $this->text['title'],                 $this->html);
             $this->html = str_replace("{linkFacebook}",           $this->text['linkFacebook'],          $this->html);
             $this->html = str_replace("{linkInstagram}",          $this->text['linkInstagram'],         $this->html);
@@ -86,47 +87,41 @@ class FormPreferences
             $this->html = str_replace("{msgCopyright}",           $this->text['msgCopyright'],          $this->html);
             $this->html = str_replace("{urlFooter}",              $this->text['urlFooter'],             $this->html);
             $this->html = str_replace("{messagePowered}",         $this->text['messagePowered'],        $this->html);
-              
-             
         } catch (Exception $e) {
             print $e->getMessage();
         }
     }
-    
+
     public function save($request, $files)
     {
-        try 
-        {
+        try {
             $this->load();
             $this->text = $request;
-            
-            foreach ($files as $campo => $file) 
-            {
+
+            foreach ($files as $campo => $file) {
                 $nomeDoArquivo = $file['name'];
                 $novoNomeDoArquivo = uniqid();
                 $extensao = strtolower(pathinfo($nomeDoArquivo, PATHINFO_EXTENSION));
 
                 $path = $this->pasta . $novoNomeDoArquivo . '.' . $extensao;
-                
+
                 $deu_certo = move_uploaded_file($file['tmp_name'], $path);
 
-                if ($deu_certo) 
-                {
+                if ($deu_certo) {
                     $this->dadosAssociativos[$campo] = $path;
                 }
             }
 
             $dados = Preferences::save($this->text, $this->dadosAssociativos, $this->id);
             return header("Location: index.php?class=FormPreferences");
-        } catch (Exception $e) 
-        {
+        } catch (Exception $e) {
             return print $e->getMessage();
-        }  
+        }
     }
 
 
 
-    public function show()  
+    public function show()
     {
         $this->load();
         return print $this->html;
