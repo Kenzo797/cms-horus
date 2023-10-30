@@ -2,6 +2,7 @@
 
 require_once 'model/Preferences.php';
 require_once 'model/Depositions.php';
+require_once 'model/Messages.php';
 require_once 'control/DepositionsComponent.php';
 require_once 'control/HomeFeaturesComponent.php';
 
@@ -59,6 +60,16 @@ class LandPage
         }
         catch(Exception $e)
         {
+            return print $e->getMessage();
+        }
+    }
+
+    public function save($param)
+    {
+        try {
+            Messages::save($param);
+            return  header("Location: index.php");
+        } catch (Exception $e) {
             return print $e->getMessage();
         }
     }

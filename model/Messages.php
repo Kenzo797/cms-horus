@@ -5,31 +5,19 @@ class Messages
 {
     public static function save($param)
     {
-        print_r($param);
+        // print_r($param);
         $conn = TTransaction::getConnection();
 
         if (empty($param['id'])) {
-            $sql = "INSERT INTO messages (id, name, email, tel, message, date) 
-                        VALUES (:id, :name, :email, :tel, :message, NOW())";
-        } else {
-            $result = $conn->query("SELECT max(id) as next FROM messages");
-            $row = $result->fetch();
-            $param['id'] = (int) $row['next'] + 1;
-            $sql = "UPDATE messages SET 
-                name = :name, 
-                email = :email, 
-                tel = :tel, 
-                message = :message, 
-                date = NOW() 
-                WHERE id = :id";
-        }
+            $sql = "INSERT INTO messages (name, email, tel, message, date) 
+                        VALUES (:name, :email, :tel, :message, NOW())";
+        } 
 
         $result = $conn->prepare($sql);
         $result->execute([
-            ':id' => $param['id'],
-            ':name' => $param['name'],
-            ':email' => $param['email'],
-            ':tel' => $param['tel'],
+            ':name' =>    $param['name'],
+            ':email' =>   $param['email'],
+            ':tel' =>     $param['tel'],
             ':message' => $param['message']
         ]);
 
