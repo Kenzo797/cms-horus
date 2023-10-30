@@ -25,7 +25,7 @@ class FormMessages
         try {
             // print_r($param);
             Messages::save($param);
-            // return  header("Location: index.php?class=ListMessages");
+            return  header("Location: index.php?class=ListMessages");
         } catch (Exception $e) {
             return print $e->getMessage();
         }
