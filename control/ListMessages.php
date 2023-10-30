@@ -12,6 +12,19 @@ class ListMessages
     {
         $this->html = file_get_contents('Layout/html/listMessages.html');
         $this->items = '';
+        $this->startSession();
+    }
+
+    public function startSession()
+    {
+        if(!isset($_SESSION)){
+            session_start();
+        }
+
+        if(!isset($_SESSION['user']))
+        {
+            die("Você não está auth <a href='index.php?class=Login'>Faça o Login</a>");
+        }
     }
     public function load()
     {

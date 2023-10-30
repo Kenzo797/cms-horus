@@ -13,6 +13,18 @@ class FormUser
         $this->data = ['id'       => '',
                     'email'     => '',
                     'password'    => '',];
+        $this->startSession();
+    }
+    public function startSession()
+    {
+        if(!isset($_SESSION)){
+            session_start();
+        }
+
+        if(!isset($_SESSION['user']))
+        {
+            die("Você não está auth <a href='index.php?class=Login'>Faça o Login</a>");
+        }
     }
 
     public function edit($params)  

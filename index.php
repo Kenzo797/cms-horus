@@ -20,7 +20,7 @@ if(class_exists($class))
     }
     $pagina->show();
 } else {
-    $error404 = "<h1>404</h1> <br> <a href='index.php?class=PessoaList'>Ir para o inicio</a>";
+    $error404 = "<h1>404</h1> <br> <a href='index.php?class=LandPage'>Ir para o inicio</a>";
     print $error404;
 }
 

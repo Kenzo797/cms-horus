@@ -11,6 +11,7 @@ class FormPreferences
 
     public function __construct()
     {
+        $this->startSession();
         $this->html = file_get_contents("./Layout/html/preferencias.html");
         $this->pasta = './files/';
         $this->dadosAssociativos = [
@@ -38,6 +39,28 @@ class FormPreferences
             'urlFooter' => '',
             'messagePowered' => ''
         ];
+    }
+    
+    public function startSession()
+    {
+        if(!isset($_SESSION)){
+            session_start();
+        }
+
+        if(!isset($_SESSION['user']))
+        {
+            die("Você não está auth <a href='index.php?class=Login'>Faça o Login</a>");
+        }
+    }
+
+    public function logout()
+    {
+        if(!isset($_SESSION)){
+            session_start();
+        }
+
+        session_destroy();
+        header("Location: index.php?class=Login");
     }
 
     public function load()

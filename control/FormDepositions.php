@@ -10,6 +10,7 @@ class FormDepositions
 
     public function __construct()
     {
+        $this->startSession();
         $this->html     = file_get_contents("Layout/html/depositions.html");
         $this->folder   = './files/';
         $this->data     = [
@@ -21,6 +22,18 @@ class FormDepositions
             'photograph'      => '',
             'backgroundImage' => ''
         ];
+    }
+
+    public function startSession()
+    {
+        if(!isset($_SESSION)){
+            session_start();
+        }
+
+        if(!isset($_SESSION['user']))
+        {
+            die("Você não está auth <a href='index.php?class=Login'>Faça o Login</a>");
+        }
     }
 
     public function edit($params)

@@ -13,8 +13,21 @@ class Login
         $this->data = ['id'      => '',
                        'login'   => '',
                        'email'   => ''];
+        $this->startSession();
     }
 
+    public function startSession()
+    {
+        if(!isset($_SESSION)){
+            session_start();
+           
+        }
+        
+        if(isset($_SESSION['user']))
+        {
+          return  header('Location: index.php?class=Dashboard');
+        }
+    }
     public function load()
     {
         try 
@@ -46,7 +59,17 @@ class Login
                     print "Preecha a senha";
                 } else {
                     $res =  User::authenticate($params['email'], $params['password']);
-                    print $res;
+
+                    if(!isset($_SESSION)) {
+                        session_start();
+                    }
+
+                    print_r($res);
+                    $_SESSION['user'] = $res['id'];
+                    $_SESSION['email'] = $res['email'];
+                    $_SESSION['name'] = $res['name'];
+                    // print $res;
+                    header("Location: index.php?class=Dashboard");
                 } 
 
             }

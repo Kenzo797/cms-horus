@@ -9,10 +9,23 @@ class FormRegister
 
     public function __construct()
     {
+        $this->startSession();
         $this->html = file_get_contents("Layout/html/register.html");
         $this->data = ['id'       => '',
                        'email'    => '',
                        'senha'    => ''];
+    }
+    public function startSession()
+    {
+        if(!isset($_SESSION)){
+            session_start();
+           
+        }
+        
+        if(isset($_SESSION['user']))
+        {
+          return  header('Location: index.php?class=Dashboard');
+        }
     }
 
     public function load()

@@ -13,8 +13,30 @@ class FormHomeSectionFeatures
         $this->data     = ['id'              => '',
                            'title'           => '',
                            'description'     => ''];
+        $this->startSession();
     }
 
+    public function startSession()
+    {
+        if(!isset($_SESSION)){
+            session_start();
+        }
+
+        if(!isset($_SESSION['user']))
+        {
+            die("Você não está auth <a href='index.php?class=Login'>Faça o Login</a>");
+        }
+    }
+
+    public function logout()
+    {
+        if(!isset($_SESSION)){
+            session_start();
+        }
+
+        session_destroy();
+        header("Location: index.php?class=Login");
+    }
     public function edit($params)
     {
         try 

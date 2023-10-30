@@ -21,6 +21,7 @@ class LandPage
         {
             $depositions = new DepositionsComponent();
             $features = new HomeFeaturesComponent();
+            // $app = new HomeAppCompontent();
             $preferences = Preferences::getAll();
            
 
@@ -51,7 +52,10 @@ class LandPage
 
             $this->html = str_replace("{depositions}", $depositions->get(), $this->html);
             $this->html = str_replace("{homee}", $features->get(), $this->html);
+
             // TODO - add no datagrid o campo name em depositions
+            // TODO - Colocar o nome nas paginas 
+            // TODO - colocar um campo no banco para o icone
         }
         catch(Exception $e)
         {
