@@ -5,38 +5,38 @@ class Messages
 {
     public static function save($param)
     {
+        print_r($param);
         $conn = TTransaction::getConnection();
 
-        if(!empty($data['id']))
-        {
-            $date = date("Y-m-d");
-            $sql = "INSERT INTO messages (id, name, tel, message, date) 
-                            VALUES (:id, :name, :tel, :message, :date)";
-
-        }
-        else
-        {
+        if (empty($param['id'])) {
+            $sql = "INSERT INTO messages (id, name, email, tel, message, date) 
+                        VALUES (:id, :name, :email, :tel, :message, NOW())";
+        } else {
             $result = $conn->query("SELECT max(id) as next FROM messages");
             $row = $result->fetch();
-            $data['id'] = (int) $row['next'] + 1;
+            $param['id'] = (int) $row['next'] + 1;
             $sql = "UPDATE messages SET 
-                    name = :name, 
-                    tel = :tel, 
-                    message = :message, 
-                    date = :date 
-                    WHERE id = :id";
+                name = :name, 
+                email = :email, 
+                tel = :tel, 
+                message = :message, 
+                date = NOW() 
+                WHERE id = :id";
         }
-        
-            $result = $conn->prepare($sql);
-            $result->execute([':id' => $param['id'],
-                                ':name' => $param['name'],
-                                ':tel' => $param['tel'],
-                                ':message' => $param['message'],
-                                ':date' => $param['date']]);
-                                
-            TTransaction::closeConnection();
 
+        $result = $conn->prepare($sql);
+        $result->execute([
+            ':id' => $param['id'],
+            ':name' => $param['name'],
+            ':email' => $param['email'],
+            ':tel' => $param['tel'],
+            ':message' => $param['message']
+        ]);
+
+        TTransaction::closeConnection();
+        return;
     }
+
 
     public static function getAll()
     {
@@ -44,7 +44,7 @@ class Messages
 
         $result = $conn->query("SELECT * FROM 	messages ORDER BY id");
         TTransaction::closeConnection();
-        
+
         return $result->fetchAll();
     }
     public static function find($id)
