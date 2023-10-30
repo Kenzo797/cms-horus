@@ -13,12 +13,10 @@ body {
 }
 
 .form-signin input[type="email"] {
-  margin-bottom: 6px;
   border-radius: 6px;
 }
 
 .form-signin input[type="password"] {
-  margin-bottom: 10px;
   border-radius: 6px;
 }
 
