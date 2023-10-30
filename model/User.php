@@ -71,4 +71,20 @@ class User
         TTransaction::closeConnection();
         return;
     }
+    public static function find($id)
+    {
+        $conn = TTransaction::getConnection();
+        $result = $conn->prepare("SELECT * FROM users WHERE id =:id");
+        $result->execute([':id' => $id]);
+        $data = $result->fetch(PDO::FETCH_ASSOC);
+        TTransaction::closeConnection();
+        return $data;
+    }
+    public static function delete($id)
+    {
+        $conn = TTransaction::getConnection();
+        $result = $conn->prepare("DELETE FROM users WHERE id =:id");
+        $result->execute([':id' => $id]);
+        TTransaction::closeConnection();
+    }
 }
