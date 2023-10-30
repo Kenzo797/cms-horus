@@ -19,12 +19,12 @@ class FormUser
     {
         try 
         {
-        $id  = (int) $params['id'];
-        $this->data = User::find($id);
+            $id  = (int) $params['id'];
+            $this->data = User::find($id);
         } 
         catch (Exception $e) 
         {
-        return $e->getMessage();
+            return $e->getMessage();
         }  
     }
 
@@ -32,14 +32,14 @@ class FormUser
     {
         try 
         {
-        $user = User::save($params);
-        $this->data = $user;
-        $result = "Usuário salvo com sucesso <br>";
-        return  print $result; 
+            $user = User::save($params);
+            $this->data = $user;
+            
+            return  header("Location: index.php?class=ListUser");
         } 
         catch (Exception $e) 
         {
-        return $e->getMessage();
+          return $e->getMessage();
         }  
     }
 

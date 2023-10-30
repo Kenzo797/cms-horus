@@ -6,13 +6,11 @@ class User
     {
         $conn = TTransaction::getConnection();
 
-        if(empty($user['id'])) 
-        {
+        if (empty($user['id'])) {
             $userExist = $conn->prepare("SELECT * FROM users WHERE email = :email");
             $userExist->execute([':email' => $user['email']]);
 
-            if($userExist->rowCount() == 0) 
-            {
+            if ($userExist->rowCount() == 0) {
                 $result = $conn->query("SELECT max(id) as next FROM users");
                 $row = $result->fetch();
 
@@ -21,18 +19,14 @@ class User
 
                 $sql = "INSERT INTO users (id, email, password)
                                VALUES ( :id, :email, :password)";
-            }
-            else 
-            {
+            } else {
                 throw new Exception("Este e-mail já está cadastrado.");
             }
-        }
-        else 
-        {
+        } else {
             $sql = "UPDATE users SET email = :email, password = :password WHERE id = :id";
         }
         $result = $conn->prepare($sql);
-        $result->execute([':id' => $user['id'],':email' => $user['email'],':password' => $hashedPassword ]);
+        $result->execute([':id' => $user['id'], ':email' => $user['email'], ':password' => $hashedPassword]);
         TTransaction::closeConnection();
     }
 
@@ -47,16 +41,12 @@ class User
         if ($result->rowCount() > 0) {
             $user = $result->fetch(PDO::FETCH_ASSOC);
 
-            if (md5($password) == $user['password'])
-            {
+            if (md5($password) == $user['password']) {
                 return $user['email'];
-            } else
-            {
+            } else {
                 throw new Exception("Senha incorreta");
             }
-        }
-        else
-        {
+        } else {
             throw new Exception("Email ou senha incorretos");
         }
         TTransaction::closeConnection();
@@ -67,9 +57,9 @@ class User
     {
         $conn = TTransaction::getConnection();
         $result = $conn->query("SELECT * FROM users ORDER BY id");
-        $result->fetchAll();
+        $data  = $result->fetchAll(PDO::FETCH_ASSOC);
         TTransaction::closeConnection();
-        return $result;
+        return $data;
     }
     public static function find($id)
     {
