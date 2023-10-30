@@ -10,9 +10,10 @@ class FormUser
     public function __construct()
     {
         $this->html = file_get_contents("Layout/html/user.html");
-        $this->data = ['id'       => '',
-                    'email'     => '',
-                    'password'    => '',];
+        $this->data = ['id'         => '',
+                       'name'       => '',
+                       'email'      => '',
+                       'password'   => '',];
         $this->startSession();
     }
     public function startSession()
@@ -59,6 +60,7 @@ class FormUser
     {
         
         $this->html = str_replace('{id}',       $this->data['id'],          $this->html);
+        $this->html = str_replace('{name}',     $this->data['name'],        $this->html);
         $this->html = str_replace('{email}',    $this->data['email'],       $this->html);
         $this->html = str_replace('{password}', $this->data['password'],    $this->html);
 
