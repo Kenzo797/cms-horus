@@ -21,7 +21,7 @@ class ListMessages
 
             foreach ($messages as $message)
             {
-                $item = file_get_contents('FAZER A LISTA HTML');
+                $item = file_get_contents('Layout/html/messagesItem.html');
 
                 $item = str_replace('{id}',       $message['id'],       $item);
                 $item = str_replace('{name}',     $message['name'],     $item);

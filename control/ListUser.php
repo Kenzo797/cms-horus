@@ -40,7 +40,7 @@ class ListUser
         try {
             $id = (int) $params['id'];
             User::delete($id);
-            return header("Location: index.php");
+            return header("Location: index.php?class=ListUser");
         } catch (Exception $e) {
             return print $e->getMessage();
         }
