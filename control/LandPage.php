@@ -3,6 +3,7 @@
 require_once 'model/Preferences.php';
 require_once 'model/Depositions.php';
 require_once 'control/DepositionsComponent.php';
+require_once 'control/HomeFeaturesComponent.php';
 
 class LandPage
 {
@@ -19,6 +20,7 @@ class LandPage
         try 
         {
             $depositions = new DepositionsComponent();
+            $features = new HomeFeaturesComponent();
             $preferences = Preferences::getAll();
            
 
@@ -48,6 +50,7 @@ class LandPage
             }
 
             $this->html = str_replace("{depositions}", $depositions->get(), $this->html);
+            $this->html = str_replace("{homee}", $features->get(), $this->html);
             // TODO - add no datagrid o campo name em depositions
         }
         catch(Exception $e)
