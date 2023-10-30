@@ -61,6 +61,14 @@ class FormPreferences
                 $this->text['urlFooter'] = $dados[0]['urlFooter'];
                 $this->text['messagePowered'] = $dados[0]['messagePowered'];
 
+
+                $this->dadosAssociativos['favicon']             = $dados[0]['favicon'];
+                $this->dadosAssociativos['headerLogo']          = $dados[0]['headerLogo'];
+                $this->dadosAssociativos['imgHomeSection']      = $dados[0]['imgHomeSection'];
+                $this->dadosAssociativos['imgStoreAppsSection'] = $dados[0]['imgStoreAppsSection'];
+                $this->dadosAssociativos['imgAppStore']         = $dados[0]['imgAppStore'];
+                $this->dadosAssociativos['imgPlayStore']        = $dados[0]['imgPlayStore'];
+                $this->dadosAssociativos['footerLogo']          = $dados[0]['footerLogo'];
                 // ver com as img
             }
            // TODO - accept=".jpg, .jpeg, .png" />
