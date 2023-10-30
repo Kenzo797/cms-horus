@@ -37,6 +37,7 @@ class ListUser
                 $item = file_get_contents('Layout/html/userItem.html');
 
                 $item = str_replace('{id}',     $user['id'],     $item);
+                $item = str_replace('{name}',  $user['name'],  $item);
                 $item = str_replace('{email}',  $user['email'],  $item);
 
                 $this->items .= $item;
