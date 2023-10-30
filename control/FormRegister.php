@@ -65,5 +65,3 @@ class FormRegister
     }
 }
 
-
-// TODO - OLHAR A Mensagem de error e para colocar de forma correta no layout
