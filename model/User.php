@@ -63,13 +63,13 @@ class User
         return;
     }
 
-    public static function all()
+    public static function getAll()
     {
         $conn = TTransaction::getConnection();
         $result = $conn->query("SELECT * FROM users ORDER BY id");
         $result->fetchAll();
         TTransaction::closeConnection();
-        return;
+        return $result;
     }
     public static function find($id)
     {

@@ -18,24 +18,24 @@ class ListUser
     {
         try
         {
-        $users = User::all();
+            $users = User::getAll();
 
 
-        foreach ($users as $user)
-        {
-            $item = file_get_contents('html/userItem.html');
+            foreach ($users as $user)
+            {
+                $item = file_get_contents('html/userItem.html');
 
-            $item = str_replace('{id}',     $user['id'],     $item);
-            $item = str_replace('{email}',  $user['email'],  $item);
+                $item = str_replace('{id}',     $user['id'],     $item);
+                $item = str_replace('{email}',  $user['email'],  $item);
 
-            $this->items .= $item;
-        }
+                $this->items .= $item;
+            }
 
-        return $this->html = str_replace('{items}', $this->items, $this->html);
+            return $this->html = str_replace('{items}', $this->items, $this->html);
         }
         catch (Exception $e)
         {
-        return print $e->getMessage();
+            return print $e->getMessage();
         }
     }
 
@@ -56,7 +56,6 @@ class ListUser
     public function show()
     {
         $this->load();
-        print $this->html;
-        return;
+        return print $this->html;
     }
 }
