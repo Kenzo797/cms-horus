@@ -14,15 +14,14 @@ class ListDepositions
 
     public function load()
     {
-        try
-        {
+        try {
             $depoimentos = Depositions::getAll();
-            
-            foreach ($depoimentos as $depoimento)
-            {
+
+            foreach ($depoimentos as $depoimento) {
                 $item = file_get_contents('Layout/html/depositionsItem.html');
 
                 $item = str_replace('{id}',                 $depoimento['id'],              $item);
+                $item = str_replace('{name}',               $depoimento['name'],            $item);
                 $item = str_replace('{title}',              $depoimento['title'],           $item);
                 $item = str_replace('{function}',           $depoimento['function'],        $item);
                 $item = str_replace('{description}',        $depoimento['description'],     $item);
@@ -33,16 +32,20 @@ class ListDepositions
             }
 
             return $this->html = str_replace('{items}', $this->items, $this->html);
-        }
-        catch (Exception $e)
-        {
+        } catch (Exception $e) {
             return print $e->getMessage();
         }
     }
 
     public function delete($params)
     {
-      
+        try {
+            $id = (int) $params['id'];
+            Depositions::delete($id);
+            return header("Location: index.php?class=ListDepositions");
+        } catch (Exception $e) {
+            return print $e->getMessage();
+        }
     }
 
     public function show()
